@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class HomeViewModel(application: Application) : BaseViewModel(application) {
+  class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     private val retrofitService = MovieRetrofit()
     private val disposable = CompositeDisposable()
@@ -37,7 +37,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
 
                         popularMovie.value = t
 
-                        println("test $t")
+
 
                     }
 
@@ -52,7 +52,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     }
 
-    fun getSearchVM(query: String) {
+    fun getSearchVM(query : String) {
 
         searchMovieLoading.value = true
 
@@ -62,7 +62,9 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<SearchResponse>() {
                     override fun onSuccess(t: SearchResponse) {
+
                         searchMovie.value = t
+
                     }
 
                     override fun onError(e: Throwable) {

@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="tabTv"
+            type="com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult" />
+    </data>
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

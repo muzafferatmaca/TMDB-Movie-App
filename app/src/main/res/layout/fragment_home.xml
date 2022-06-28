@@ -10,17 +10,18 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
+            style="@style/CustomSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_margin="@dimen/dimen_large"
             android:background="@color/white"
-            android:theme="@style/Theme.TMDBMovieApp"
+            app:closeIcon="@drawable/ic_baseline_close_24"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryBackground="@null" />
+            app:queryHint="@string/searchHintText"
+            app:searchIcon="@drawable/ic_baseline_search_24" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"

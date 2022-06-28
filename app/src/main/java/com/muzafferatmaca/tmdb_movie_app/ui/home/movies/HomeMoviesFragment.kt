@@ -18,13 +18,14 @@ import kotlinx.android.synthetic.main.fragment_home_movies.*
     private lateinit var viewModel: HomeViewModel
     private val homeMoviesAdapter = HomeMoviesAdapter(arrayListOf())
 
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+    //    viewModel.getSearchVM()
+
+
+
 
         recyclerViewHomeMovie.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewHomeMovie.setHasFixedSize(true)
@@ -35,17 +36,18 @@ import kotlinx.android.synthetic.main.fragment_home_movies.*
 
   private   fun searchObserveLiveData() {
 
-        viewModel.searchMovie.observe(viewLifecycleOwner) {  searchResponse ->
-
+      /*  viewModel.searchMovie.observe(viewLifecycleOwner) {  searchResponse ->
+            println("test")
             searchResponse.searchResults?.let {
 
+                println("test $it")
                 recyclerViewHomeMovie.visibility = View.VISIBLE
                 homeMoviesAdapter.movieList = it as List<SearchResult>
                 homeMoviesAdapter.notifyDataSetChanged()
 
             }
 
-        }
+        }*/
 
     }
 

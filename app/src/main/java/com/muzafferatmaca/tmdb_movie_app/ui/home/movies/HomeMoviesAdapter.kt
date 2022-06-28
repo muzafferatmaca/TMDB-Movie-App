@@ -24,6 +24,8 @@ class HomeMoviesAdapter(var movieList : List<SearchResult>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        holder.itemBinding.tabMovie = movieList[position]
+
     }
 
     override fun getItemCount(): Int = movieList.size

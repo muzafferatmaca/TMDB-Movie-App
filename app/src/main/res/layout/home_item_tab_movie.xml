@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="tabMovie"
+            type="com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,6 +27,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/movieImageView"
                 app:layout_constraintStart_toStartOf="parent"
+                android:downloadUrl="@{tabMovie.posterPath}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
@@ -30,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieTitleTextView"
+                android:text="@{tabMovie.originalTitle}"
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintTop_toTopOf="parent"
                />
@@ -39,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieDescTextView"
+                android:text="@{tabMovie.overview}"
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
