@@ -3,6 +3,7 @@ package com.muzafferatmaca.tmdb_movie_app.service
 import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.MovieResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResponse
+import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.utils.Constant
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -28,6 +29,11 @@ class MovieRetrofit {
 
     fun getMovieDetail(id : Int) : Single<MovieDetailResponse>{
         return retrofit.getMovieDetail(id,Constant.API_KEY)
+    }
+
+    fun getPersonDetail(id : Int): Single<PersonDetailResponse>{
+
+        return  retrofit.getPersonDetail(id,Constant.API_KEY)
     }
 
 

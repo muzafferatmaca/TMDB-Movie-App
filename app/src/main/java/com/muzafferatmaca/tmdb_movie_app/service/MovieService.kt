@@ -3,6 +3,7 @@ package com.muzafferatmaca.tmdb_movie_app.service
 import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.MovieResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResponse
+import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.utils.Constant
 import io.reactivex.Single
 import retrofit2.Response
@@ -29,6 +30,11 @@ interface MovieService {
         @Query("api_key")  key : String = Constant.API_KEY,
     ): Single<MovieDetailResponse>
 
+    @GET("person/{person_id}")
+     fun getPersonDetail(
+        @Path("person_id") person_id: Int,
+        @Query("api_key")  key : String = Constant.API_KEY,
+    ): Single<PersonDetailResponse>
 
 
 

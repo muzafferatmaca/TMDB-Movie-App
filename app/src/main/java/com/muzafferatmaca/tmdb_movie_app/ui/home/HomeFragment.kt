@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.get
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentHomeBinding
 import com.muzafferatmaca.tmdb_movie_app.ui.home.movies.HomeMoviesFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.people.HomePeopleFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.tv.HomeTvFragment
+import com.muzafferatmaca.tmdb_movie_app.utils.hideSoftKeyboard
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -51,9 +53,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     homeViewPager.visibility = View.VISIBLE
                 }
 
+                hideSoftKeyboard(this@HomeFragment)
+
                 queryString = newText.toString()
-
-
                 setFragmentResult("requestKey", bundleOf("data" to queryString))
                 return true
             }
@@ -88,6 +90,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         adapter.addFragment(HomeTvFragment(), "Tv")
         homeViewPager.adapter = adapter
         homeTabLayout.setupWithViewPager(homeViewPager)
+
 
     }
 }

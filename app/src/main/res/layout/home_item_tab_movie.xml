@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="tabMovie"
             type="com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult" />
+
+        <variable
+            name="listener"
+            type="com.muzafferatmaca.tmdb_movie_app.utils.ItemClick" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/dimen_medium"
+        android:onClick="@{listener::onItemClick}"
         android:backgroundTint="@color/white"
         android:elevation="8dp"
-        android:layout_margin="@dimen/dimen_medium"
         app:cardCornerRadius="8dp"
-        app:contentPadding="@dimen/dimen_small"
-        android:layout_height="200dp">
+        app:contentPadding="@dimen/dimen_small">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,33 +29,46 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/movieImageView"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:id="@+id/movieImageView"
-                app:layout_constraintStart_toStartOf="parent"
                 android:downloadUrl="@{tabMovie.posterPath}"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/movieTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movieTitleTextView"
+                android:fontFamily="@font/roboto_bold"
                 android:text="@{tabMovie.originalTitle}"
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
-                app:layout_constraintTop_toTopOf="parent"
-               />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movieIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@{String.valueOf(tabMovie.id)}"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/movieImageView"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/movieDescTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_small"
+                android:ellipsize="end"
+                android:maxLines="10"
                 android:text="@{tabMovie.overview}"
-                app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@id/movieImageView"
+                app:layout_constraintTop_toBottomOf="@id/movieTitleTextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
