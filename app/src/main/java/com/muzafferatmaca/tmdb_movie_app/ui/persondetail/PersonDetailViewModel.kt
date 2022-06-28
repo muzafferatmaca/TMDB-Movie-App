@@ -2,7 +2,6 @@ package com.muzafferatmaca.tmdb_movie_app.ui.persondetail
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.service.MovieRetrofit
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseViewModel

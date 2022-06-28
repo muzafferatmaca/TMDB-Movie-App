@@ -6,6 +6,9 @@
         <variable
             name="tabPeople"
             type="com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult" />
+        <variable
+            name="listener"
+            type="com.muzafferatmaca.tmdb_movie_app.utils.ItemClick" />
     </data>
 
 
@@ -13,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="190dp"
         android:elevation="8dp"
+        android:onClick="@{listener::onItemClick}"
         app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +32,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/personIdTexView"
+                android:text="@{String.valueOf(tabPeople.id)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/homeTabPeopleTextView"

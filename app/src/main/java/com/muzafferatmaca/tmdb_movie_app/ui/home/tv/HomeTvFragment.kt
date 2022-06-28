@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentHomeTvBinding
-import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home_movies.*

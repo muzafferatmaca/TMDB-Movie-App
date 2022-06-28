@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentPersonDetailBinding
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
-import com.muzafferatmaca.tmdb_movie_app.ui.moviedetail.MovieDetailFragmentArgs
-import com.muzafferatmaca.tmdb_movie_app.ui.moviedetail.MovieDetailViewModel
 
 class PersonDetailFragment : BaseFragment<FragmentPersonDetailBinding>() {
 
@@ -22,8 +20,8 @@ class PersonDetailFragment : BaseFragment<FragmentPersonDetailBinding>() {
         arguments?.let {
             personId = PersonDetailFragmentArgs.fromBundle(it).id
         }
-        viewModel = ViewModelProvider(this).get(PersonDetailViewModel::class.java)
 
+        viewModel = ViewModelProvider(this).get(PersonDetailViewModel::class.java)
         viewModel.getPersonDetail(personId)
         observeLiveData()
 
