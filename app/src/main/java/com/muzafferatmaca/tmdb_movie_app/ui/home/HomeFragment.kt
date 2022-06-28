@@ -3,6 +3,8 @@ package com.muzafferatmaca.tmdb_movie_app.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
@@ -18,9 +20,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val layoutId: Int = R.layout.fragment_home
     private lateinit var viewModel: HomeViewModel
     private val homeAdapter = HomeAdapter(arrayListOf())
+    var queryString: String? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpTabs()
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         viewModel.getPopularMovieVM()
@@ -31,28 +36,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 if (newText == null || newText.trim().isEmpty()) {
-                    recyclerViewHome.visibility = View.GONE
-                    appBarLayout.visibility = View.VISIBLE
-                    homeViewPager.visibility = View.VISIBLE
-                } else {
                     recyclerViewHome.visibility = View.VISIBLE
                     appBarLayout.visibility = View.GONE
                     homeViewPager.visibility = View.GONE
+                } else {
+                    recyclerViewHome.visibility = View.GONE
+                    appBarLayout.visibility = View.VISIBLE
+                    homeViewPager.visibility = View.VISIBLE
                 }
-                viewModel.getSearchVM(query = newText!!)
 
+                queryString = newText.toString()
+
+
+                setFragmentResult("requestKey", bundleOf("data" to queryString))
                 return true
             }
 
         })
 
-        setUpTabs()
         popularMovieObserveLiveData()
 
     }
@@ -73,12 +80,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     }
 
-
-
-   private fun setUpTabs() {
+    private fun setUpTabs() {
 
         val adapter = HomeFragmentViewPagerAdapter(parentFragmentManager)
-        adapter.addFragment(HomeMoviesFragment(), "Home")
+        adapter.addFragment(HomeMoviesFragment(), "Movie")
         adapter.addFragment(HomePeopleFragment(), "People")
         adapter.addFragment(HomeTvFragment(), "Tv")
         homeViewPager.adapter = adapter

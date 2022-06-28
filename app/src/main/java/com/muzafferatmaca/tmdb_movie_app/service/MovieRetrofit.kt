@@ -1,5 +1,6 @@
 package com.muzafferatmaca.tmdb_movie_app.service
 
+import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.MovieResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResponse
 import com.muzafferatmaca.tmdb_movie_app.utils.Constant
@@ -22,7 +23,12 @@ class MovieRetrofit {
     }
 
     fun getSearchMoviePeopleTv(query : String) : Single<SearchResponse>{
-        return  retrofit.searchMoviePeopleTv(query = query)
+        return  retrofit.searchMoviePeopleTv(Constant.API_KEY ,query)
     }
+
+    fun getMovieDetail(id : Int) : Single<MovieDetailResponse>{
+        return retrofit.getMovieDetail(id,Constant.API_KEY)
+    }
+
 
 }

@@ -6,20 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.people.HomeMoviesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/white"
-        android:text="home mov" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHomeMovie"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

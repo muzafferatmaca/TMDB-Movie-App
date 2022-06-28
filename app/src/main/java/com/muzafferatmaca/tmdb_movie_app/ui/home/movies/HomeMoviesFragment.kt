@@ -22,10 +22,6 @@ class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-    //    viewModel.getSearchVM()
-
-
-
 
         setFragmentResultListener("requestKey") { key, bundle ->
             val queryText = bundle.getString("data")
@@ -42,26 +38,18 @@ class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
     }
 
-<<<<<<< HEAD
-  private   fun searchObserveLiveData() {
-
-      /*  viewModel.searchMovie.observe(viewLifecycleOwner) {  searchResponse ->
-            println("test")
-=======
     private fun searchObserveLiveData() {
 
         viewModel.searchMovie.observe(viewLifecycleOwner) { searchResponse ->
->>>>>>> 2a13360 (home fragment fix, add detail)
             searchResponse.searchResults?.let {
 
-                println("test $it")
                 recyclerViewHomeMovie.visibility = View.VISIBLE
                 homeMoviesAdapter.movieList = it
                 homeMoviesAdapter.notifyDataSetChanged()
 
             }
 
-        }*/
+        }
 
     }
 

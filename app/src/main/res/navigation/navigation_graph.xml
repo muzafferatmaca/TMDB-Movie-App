@@ -36,10 +36,20 @@
         <action
             android:id="@+id/action_movieDetailFragment_to_personDetailFragment"
             app:destination="@id/personDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/personDetailFragment"
         android:name="com.muzafferatmaca.tmdb_movie_app.ui.persondetail.PersonDetailFragment"
         android:label="PersonDetailFragment"
         tools:layout="@layout/fragment_person_detail" />
+    <argument
+        android:name="id"
+        app:argType="integer" />
+    <argument
+        android:name="name"
+        app:argType="string"
+        app:nullable="true" />
 </navigation>
