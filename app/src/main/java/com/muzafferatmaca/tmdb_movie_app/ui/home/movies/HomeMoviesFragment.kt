@@ -1,18 +1,18 @@
 package com.muzafferatmaca.tmdb_movie_app.ui.home.movies
 
 import android.os.Bundle
-
 import android.view.View
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentMovieDetailBinding
-import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResult
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home_movies.*
 
- class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>(){
+
+class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
     override val layoutId: Int = R.layout.fragment_home_movies
     private lateinit var viewModel: HomeViewModel
@@ -27,22 +27,36 @@ import kotlinx.android.synthetic.main.fragment_home_movies.*
 
 
 
+        setFragmentResultListener("requestKey") { key, bundle ->
+            val queryText = bundle.getString("data")
+
+            queryText?.let { viewModel.getSearchVM(it) }
+            searchObserveLiveData()
+        }
+
+
         recyclerViewHomeMovie.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewHomeMovie.setHasFixedSize(true)
         recyclerViewHomeMovie.adapter = homeMoviesAdapter
 
-        searchObserveLiveData()
+
     }
 
+<<<<<<< HEAD
   private   fun searchObserveLiveData() {
 
       /*  viewModel.searchMovie.observe(viewLifecycleOwner) {  searchResponse ->
             println("test")
+=======
+    private fun searchObserveLiveData() {
+
+        viewModel.searchMovie.observe(viewLifecycleOwner) { searchResponse ->
+>>>>>>> 2a13360 (home fragment fix, add detail)
             searchResponse.searchResults?.let {
 
                 println("test $it")
                 recyclerViewHomeMovie.visibility = View.VISIBLE
-                homeMoviesAdapter.movieList = it as List<SearchResult>
+                homeMoviesAdapter.movieList = it
                 homeMoviesAdapter.notifyDataSetChanged()
 
             }

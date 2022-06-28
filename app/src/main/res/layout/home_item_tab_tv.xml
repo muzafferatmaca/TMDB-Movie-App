@@ -27,6 +27,7 @@
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:id="@+id/movieImageView"
+                android:downloadUrl="@{tabTv.posterPath}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieTitleTextView"
+                android:text="@{tabTv.originalTitle}"
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintTop_toTopOf="parent"
                />
@@ -45,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieDescTextView"
+                android:text="@{tabTv.overview}"
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />

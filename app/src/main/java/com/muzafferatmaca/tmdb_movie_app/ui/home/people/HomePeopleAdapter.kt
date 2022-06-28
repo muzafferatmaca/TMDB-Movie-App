@@ -18,11 +18,13 @@ class HomePeopleAdapter(var movieList : List<SearchResult>) : RecyclerView.Adapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<HomeItemTabPeopleBinding>(inflater, R.layout.home_item_movie,parent,false)
+        val view = DataBindingUtil.inflate<HomeItemTabPeopleBinding>(inflater, R.layout.home_item_tab_people,parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.itemBinding.tabPeople = movieList[position]
 
     }
 

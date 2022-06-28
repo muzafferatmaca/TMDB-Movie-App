@@ -42,16 +42,4 @@
         android:name="com.muzafferatmaca.tmdb_movie_app.ui.persondetail.PersonDetailFragment"
         android:label="PersonDetailFragment"
         tools:layout="@layout/fragment_person_detail" />
-    <fragment
-        android:id="@+id/homeMoviesFragment"
-        android:name="com.muzafferatmaca.tmdb_movie_app.ui.home.movies.HomeMoviesFragment"
-        android:label="HomeMoviesFragment" />
-    <fragment
-        android:id="@+id/homePeopleFragment"
-        android:name="com.muzafferatmaca.tmdb_movie_app.ui.home.people.HomePeopleFragment"
-        android:label="HomePeopleFragment" />
-    <fragment
-        android:id="@+id/homeTvFragment"
-        android:name="com.muzafferatmaca.tmdb_movie_app.ui.home.tv.HomeTvFragment"
-        android:label="HomeTvFragment" />
 </navigation>

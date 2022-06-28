@@ -6,12 +6,16 @@
         <variable
             name="movie"
             type="com.muzafferatmaca.tmdb_movie_app.model.homemodel.Result" />
+       <variable
+        name="listener"
+        type="com.muzafferatmaca.tmdb_movie_app.utils.ItemClick" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:backgroundTint="@color/white"
         android:elevation="8dp"
+        android:onClick="@{listener::onItemClick}"
         android:layout_margin="@dimen/dimen_medium"
         app:cardCornerRadius="8dp"
         app:contentPadding="@dimen/dimen_small"
@@ -40,6 +44,15 @@
                 app:layout_constraintStart_toEndOf="@id/movieImageView"
                 app:layout_constraintTop_toTopOf="parent"
                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movieIdTextView"
+                android:text="@{String.valueOf(movie.id)}"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/movieImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
 
             <TextView

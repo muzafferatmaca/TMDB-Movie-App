@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/drawable/searchview_background.xml" value="0.294" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/drawable/splashimage.xml" value="0.2985" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/activity_splash.xml" value="0.358695652173913" />
@@ -15,7 +14,6 @@
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/fragment_person_detail.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/fragment_splash.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/home_item_tab_movie.xml" value="0.35833333333333334" />
-        <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/home_item_tab_people.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/home_item_tab_person.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/home_item_tab_tv.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/Eren/Desktop/TMDBMovieApp/app/src/main/res/layout/populer_movie.xml" value="0.358695652173913" />

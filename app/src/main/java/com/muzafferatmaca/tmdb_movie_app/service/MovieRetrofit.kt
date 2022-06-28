@@ -22,8 +22,7 @@ class MovieRetrofit {
     }
 
     fun getSearchMoviePeopleTv(query : String) : Single<SearchResponse>{
-        return  retrofit.searchMoviePeopleTv(Constant.API_KEY ,query)
+        return  retrofit.searchMoviePeopleTv(query = query)
     }
-
 
 }

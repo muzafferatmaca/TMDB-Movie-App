@@ -10,44 +10,38 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:backgroundTint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
         android:elevation="8dp"
-        android:layout_margin="@dimen/dimen_medium"
-        app:cardCornerRadius="8dp"
-        app:contentPadding="@dimen/dimen_small"
-        android:layout_height="200dp">
-
+        app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:id="@+id/movieImageView"
+                android:id="@+id/homeTabPeopleImageView"
+                android:downloadUrl="@{tabPeople.profilePath}"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/homeTabPeopleTextView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/movieTitleTextView"
-                app:layout_constraintStart_toEndOf="@id/movieImageView"
-                app:layout_constraintTop_toTopOf="parent"
-               />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/movieDescTextView"
-                app:layout_constraintStart_toEndOf="@id/movieImageView"
+                android:layout_marginHorizontal="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{tabPeople.name}"
+                android:textColor="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="@id/homeTabPeopleImageView"
+                app:layout_constraintStart_toStartOf="@id/homeTabPeopleImageView"
+                app:layout_constraintTop_toBottomOf="@+id/homeTabPeopleImageView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

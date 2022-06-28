@@ -1,4 +1,3 @@
-/*
 package com.muzafferatmaca.tmdb_movie_app.ui.home
 
 import androidx.fragment.app.Fragment
@@ -22,4 +21,4 @@ class HomeFragmentViewPagerAdapter(supportFragmentManager : FragmentManager) : F
         fragmentTitleList.add(title)
 
     }
-}*/
+}
