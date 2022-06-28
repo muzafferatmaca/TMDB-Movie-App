@@ -1,0 +1,88 @@
+package com.muzafferatmaca.tmdb_movie_app.ui.home
+
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
+import com.muzafferatmaca.tmdb_movie_app.R
+import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentHomeBinding
+import com.muzafferatmaca.tmdb_movie_app.ui.home.movies.HomeMoviesFragment
+import com.muzafferatmaca.tmdb_movie_app.ui.home.people.HomePeopleFragment
+import com.muzafferatmaca.tmdb_movie_app.ui.home.tv.HomeTvFragment
+import kotlinx.android.synthetic.main.fragment_home.*
+
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
+    override val layoutId: Int = R.layout.fragment_home
+    private lateinit var viewModel: HomeViewModel
+    private val homeAdapter = HomeAdapter(arrayListOf())
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel.getPopularMovieVM()
+
+        recyclerViewHome.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewHome.setHasFixedSize(true)
+        recyclerViewHome.adapter = homeAdapter
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if (newText == null || newText.trim().isEmpty()) {
+                    recyclerViewHome.visibility = View.GONE
+                    appBarLayout.visibility = View.VISIBLE
+                    homeViewPager.visibility = View.VISIBLE
+                } else {
+                    recyclerViewHome.visibility = View.VISIBLE
+                    appBarLayout.visibility = View.GONE
+                    homeViewPager.visibility = View.GONE
+                }
+                viewModel.getSearchVM(query = newText!!)
+
+                return true
+            }
+
+        })
+
+        setUpTabs()
+        popularMovieObserveLiveData()
+
+    }
+
+    private fun popularMovieObserveLiveData() {
+
+        viewModel.popularMovie.observe(viewLifecycleOwner) { movieResponse ->
+
+            movieResponse.results?.let {
+
+                recyclerViewHome.visibility = View.VISIBLE
+                homeAdapter.movieList = it
+                homeAdapter.notifyDataSetChanged()
+
+            }
+
+        }
+
+    }
+
+
+
+   private fun setUpTabs() {
+
+        val adapter = HomeFragmentViewPagerAdapter(parentFragmentManager)
+        adapter.addFragment(HomeMoviesFragment(), "Home")
+        adapter.addFragment(HomePeopleFragment(), "People")
+        adapter.addFragment(HomeTvFragment(), "Tv")
+        homeViewPager.adapter = adapter
+        homeTabLayout.setupWithViewPager(homeViewPager)
+
+    }
+}
