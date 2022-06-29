@@ -8,6 +8,7 @@
             name="listener"
             type="com.muzafferatmaca.tmdb_movie_app.utils.ItemClick" />
 
+
         <variable
             name="itemCast"
             type="com.muzafferatmaca.tmdb_movie_app.model.detailmodel.Cast" />
