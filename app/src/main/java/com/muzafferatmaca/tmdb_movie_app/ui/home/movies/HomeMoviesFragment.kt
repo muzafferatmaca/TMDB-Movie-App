@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentMovieDetailBinding
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home_movies.*
+import kotlinx.coroutines.CoroutineScope
 
 
 class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>() {
@@ -23,19 +25,20 @@ class HomeMoviesFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        setFragmentResultListener("requestKey") { key, bundle ->
-            val queryText = bundle.getString("data")
-
-            queryText?.let { viewModel.getSearchVM(it) }
-            searchObserveLiveData()
+        lifecycleScope.launchWhenResumed {
+            setFragmentResultListener("requestKey") { key, bundle ->
+                val queryText = bundle.getString("data")
+                queryText?.let { viewModel.getSearchVM(it) }
+            }
         }
+
 
 
         recyclerViewHomeMovie.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewHomeMovie.setHasFixedSize(true)
         recyclerViewHomeMovie.adapter = homeMoviesAdapter
 
-
+        searchObserveLiveData()
     }
 
     private fun searchObserveLiveData() {

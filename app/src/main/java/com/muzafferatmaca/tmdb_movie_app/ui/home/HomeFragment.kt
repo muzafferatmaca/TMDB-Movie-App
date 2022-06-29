@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.R
@@ -15,6 +16,9 @@ import com.muzafferatmaca.tmdb_movie_app.ui.home.people.HomePeopleFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.tv.HomeTvFragment
 import com.muzafferatmaca.tmdb_movie_app.utils.hideSoftKeyboard
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -53,9 +57,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 hideSoftKeyboard(this@HomeFragment)
-
                 queryString = newText.toString()
-                setFragmentResult("requestKey", bundleOf("data" to queryString))
+               lifecycleScope.launchWhenResumed {
+                   setFragmentResult("requestKey", bundleOf("data" to queryString))
+               }
                 return true
             }
 

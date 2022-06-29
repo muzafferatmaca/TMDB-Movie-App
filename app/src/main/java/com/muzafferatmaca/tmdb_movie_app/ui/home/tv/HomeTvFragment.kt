@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentHomeTvBinding
@@ -25,22 +26,22 @@ class HomeTvFragment : BaseFragment<FragmentHomeTvBinding>() {
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        setFragmentResultListener("requestKey") { key, bundle ->
-            val queryText = bundle.getString("data")
-
-            queryText?.let { viewModel.getSearchVM(it) }
-            searchObserveLiveData()
+        lifecycleScope.launchWhenResumed {
+            setFragmentResultListener("requestKey") { key, bundle ->
+                val queryText = bundle.getString("data")
+                queryText?.let { viewModel.getSearchVM(it) }
+            }
         }
 
         recyclerViewHomeTv.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewHomeTv.setHasFixedSize(true)
         recyclerViewHomeTv.adapter = homeTvAdapter
-
+        searchObserveLiveData()
     }
 
-  private  fun searchObserveLiveData() {
+    private fun searchObserveLiveData() {
 
-        viewModel.searchMovie.observe(viewLifecycleOwner) {  searchResponse ->
+        viewModel.searchMovie.observe(viewLifecycleOwner) { searchResponse ->
 
             searchResponse.searchResults?.let {
 

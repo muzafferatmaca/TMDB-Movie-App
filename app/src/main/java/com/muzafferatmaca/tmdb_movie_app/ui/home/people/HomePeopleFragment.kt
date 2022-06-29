@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,23 +28,23 @@ class HomePeopleFragment : BaseFragment<FragmentHomePeopleBinding>() {
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        setFragmentResultListener("requestKey") { key, bundle ->
-            val queryText = bundle.getString("data")
-
-            queryText?.let { viewModel.getSearchVM(it) }
-            searchObserveLiveData()
+        lifecycleScope.launchWhenResumed {
+            setFragmentResultListener("requestKey") { key, bundle ->
+                val queryText = bundle.getString("data")
+                queryText?.let { viewModel.getSearchVM(it) }
+            }
         }
 
 
         recyclerViewHomePeople.layoutManager = GridLayoutManager(context, 3)
         val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
-        ResourcesCompat.getDrawable(resources,R.drawable.divider,null)?.let {
+        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
         }
         recyclerViewHomePeople.addItemDecoration(dividerItemDecoration)
 
         recyclerViewHomePeople.adapter = homePeopleAdapter
-
+        searchObserveLiveData()
     }
 
     private fun searchObserveLiveData() {

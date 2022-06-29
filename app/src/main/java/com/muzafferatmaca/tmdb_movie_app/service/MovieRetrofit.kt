@@ -4,6 +4,7 @@ import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieCreditsResponse
 import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.MovieResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResponse
+import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonCreditsResponse
 import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.utils.Constant
 import io.reactivex.Single
@@ -41,5 +42,12 @@ class MovieRetrofit {
         return  retrofit.getMovieCredits(id,Constant.API_KEY)
     }
 
+fun getPersonMovieCredits(id : Int) : Single<PersonCreditsResponse>{
+    return retrofit.getPersonMovieCredits(id,Constant.API_KEY)
+}
+
+    fun getPersonTVCredits(id : Int) : Single<PersonCreditsResponse>{
+        return retrofit.getPersonTVCretdits(id,Constant.API_KEY)
+    }
 
 }
