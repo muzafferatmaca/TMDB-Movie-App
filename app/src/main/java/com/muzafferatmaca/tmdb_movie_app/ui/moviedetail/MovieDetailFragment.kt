@@ -1,24 +1,21 @@
 package com.muzafferatmaca.tmdb_movie_app.ui.moviedetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentMovieDetailBinding
 import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
-import com.muzafferatmaca.tmdb_movie_app.ui.home.HomeAdapter
-import com.muzafferatmaca.tmdb_movie_app.ui.home.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
     override val layoutId: Int = R.layout.fragment_movie_detail
     private lateinit var viewModel: MovieDetailViewModel
     private var movieId: Int = 0
+    private val movieDetailCastAdapter = MovieDetailCastAdapter(arrayListOf())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,6 +26,11 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
         viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
         viewModel.getMovieDetail(movieId)
+
+        detailMoviePersonRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        detailMoviePersonRecyclerView.setHasFixedSize(true)
+        detailMoviePersonRecyclerView.adapter = movieDetailCastAdapter
+
         observeLiveData()
     }
 
@@ -39,13 +41,22 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
             detailResponse.let {
 
-                binding.movie=it
+                binding.movie = it
+
+            }
+
+        }
+        viewModel.detailMovieCredits.observe(viewLifecycleOwner) { creditResponse ->
+
+            creditResponse?.let {
+
+                detailMoviePersonRecyclerView.visibility = View.VISIBLE
+                movieDetailCastAdapter.castList = it
+                movieDetailCastAdapter.notifyDataSetChanged()
 
             }
 
         }
 
     }
-
-
 }

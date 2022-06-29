@@ -1,5 +1,6 @@
 package com.muzafferatmaca.tmdb_movie_app.service
 
+import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieCreditsResponse
 import com.muzafferatmaca.tmdb_movie_app.model.detailmodel.MovieDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.MovieResponse
 import com.muzafferatmaca.tmdb_movie_app.model.homemodel.search.SearchResponse
@@ -34,6 +35,10 @@ class MovieRetrofit {
     fun getPersonDetail(id : Int): Single<PersonDetailResponse>{
 
         return  retrofit.getPersonDetail(id,Constant.API_KEY)
+    }
+
+    fun getMovieCredits(id: Int) : Single<MovieCreditsResponse>{
+        return  retrofit.getMovieCredits(id,Constant.API_KEY)
     }
 
 

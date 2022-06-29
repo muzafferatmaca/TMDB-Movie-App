@@ -38,7 +38,7 @@ class HomePeopleAdapter(var movieList : List<SearchResult>) : RecyclerView.Adapt
 
     override fun onItemClick(view: View) {
         val personId = view.personIdTexView.text.toString().toInt()
-        val action = HomeFragmentDirections.actionHomeFragmentToPersonDetailFragment(personId)
+        val action = HomeFragmentDirections.actionHomeFragmentToPersonDetailFragment(personId,null)
         Navigation.findNavController(view).navigate(action)
     }
 }
