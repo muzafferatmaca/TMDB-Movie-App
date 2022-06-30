@@ -1,8 +1,7 @@
 package com.muzafferatmaca.tmdb_movie_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.muzafferatmaca.tmdb_movie_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -8,7 +8,6 @@ import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonCreditsResponse
 import com.muzafferatmaca.tmdb_movie_app.model.personmodel.PersonDetailResponse
 import com.muzafferatmaca.tmdb_movie_app.utils.Constant
 import io.reactivex.Single
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

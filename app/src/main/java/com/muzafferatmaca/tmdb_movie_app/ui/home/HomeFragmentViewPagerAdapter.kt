@@ -9,6 +9,7 @@ class HomeFragmentViewPagerAdapter(supportFragmentManager : FragmentManager) : F
     private val  fragmentList = ArrayList<Fragment>()
     private val fragmentTitleList = ArrayList<String>()
 
+
     override fun getCount(): Int = fragmentList.size
 
     override fun getItem(position: Int): Fragment   = fragmentList[position]
@@ -19,6 +20,8 @@ class HomeFragmentViewPagerAdapter(supportFragmentManager : FragmentManager) : F
 
         fragmentList.add(fragment)
         fragmentTitleList.add(title)
+
+
 
     }
 }

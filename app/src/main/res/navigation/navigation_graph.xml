@@ -42,6 +42,12 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_personDetailFragment2"
+            app:destination="@id/personDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/personDetailFragment"
@@ -55,5 +61,11 @@
             android:name="name"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 </navigation>

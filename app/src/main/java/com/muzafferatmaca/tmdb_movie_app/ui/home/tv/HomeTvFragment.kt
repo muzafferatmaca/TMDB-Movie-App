@@ -41,11 +41,13 @@ class HomeTvFragment : BaseFragment<FragmentHomeTvBinding>() {
 
     private fun searchObserveLiveData() {
 
+
+
         viewModel.searchMovie.observe(viewLifecycleOwner) { searchResponse ->
 
             searchResponse.searchResults?.let {
 
-                recyclerViewHomeMovie.visibility = View.VISIBLE
+                recyclerViewHomeTv.visibility = View.VISIBLE
                 homeTvAdapter.movieList = it
                 homeTvAdapter.notifyDataSetChanged()
 

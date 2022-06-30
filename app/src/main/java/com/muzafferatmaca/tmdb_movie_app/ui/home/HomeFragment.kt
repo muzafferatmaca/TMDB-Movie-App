@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.R
 import com.muzafferatmaca.tmdb_movie_app.databinding.FragmentHomeBinding
+import com.muzafferatmaca.tmdb_movie_app.ui.base.BaseFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.movies.HomeMoviesFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.people.HomePeopleFragment
 import com.muzafferatmaca.tmdb_movie_app.ui.home.tv.HomeTvFragment
 import com.muzafferatmaca.tmdb_movie_app.utils.hideSoftKeyboard
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -57,17 +54,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 hideSoftKeyboard(this@HomeFragment)
+
                 queryString = newText.toString()
+
                lifecycleScope.launchWhenResumed {
-                   setFragmentResult("requestKey", bundleOf("data" to queryString))
+                   childFragmentManager.setFragmentResult("requestKey", bundleOf("data" to queryString))
+
                }
+
                 return true
             }
 
         })
-
-        popularMovieObserveLiveData()
-
+popularMovieObserveLiveData()
     }
 
     private fun popularMovieObserveLiveData() {
@@ -76,25 +75,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             movieResponse.results?.let {
 
-                recyclerViewHome.visibility = View.VISIBLE
                 homeAdapter.movieList = it
                 homeAdapter.notifyDataSetChanged()
 
             }
 
         }
-
     }
 
     private fun setUpTabs() {
 
-        val adapter = HomeFragmentViewPagerAdapter(parentFragmentManager)
+        val adapter = HomeFragmentViewPagerAdapter(childFragmentManager)
         adapter.addFragment(HomeMoviesFragment(), "Movie")
         adapter.addFragment(HomePeopleFragment(), "People")
         adapter.addFragment(HomeTvFragment(), "Tv")
         homeViewPager.adapter = adapter
         homeTabLayout.setupWithViewPager(homeViewPager)
-
 
     }
 }
